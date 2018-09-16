@@ -6,31 +6,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nex+</title>
+
+  <!-- Vuetify Data Table-->
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
   <link href="styles.css" rel="stylesheet" type="text/css">
   <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+  <script src="https://instagram-web-auth.firebaseapp.com/instauth.min.js"></script>
+  <script type="text/javascript" src="realtime-datatable-vue/instafeed.js-master"></script>
+
+
+  <!-- instagram photos-->
+
+
+
 </head>
 
 <body>
 <div id="app">
   <v-app>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
     <main>
       <v-content>
-        <v-container fluid>
+        <v-container fluid >
           <div>
-            <v-dialog v-model="dialog" max-width="500px">
-              <v-btn slot="activator" color="red" dark class="mb-2">Nouvel Influenceur</v-btn>
+            <v-dialog id ="caca" v-model="dialog" max-width="500px">
+              <v-btn slot="activator" id ="create">Nouvel Influenceur</v-btn>
               <v-card>
                 <v-card-title>
                   <span class="headline">{{ formTitle }}</span>
                 </v-card-title>
-                <v-card-text>
+                <v-card-text >
                   <v-container grid-list-md>
                     <v-layout wrap>
                       <v-flex xs12 sm6 md4>
@@ -53,8 +58,8 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="red" flat @click.native="close">Cancel</v-btn>
-                  <v-btn color="red" flat @click.native="save">Save</v-btn>
+                  <v-btn id="closePop" flat @click.native="close">Cancel</v-btn>
+                  <v-btn id="savePop" flat @click.native="save">Save</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -67,53 +72,31 @@
                 <td class="text-xs-right">{{ props.item.protein }}</td>
                 <td class="justify-center layout px-0">
                   <v-btn icon class="mx-0" @click="editItem(props.item)">
-                    <v-icon color="red">edit</v-icon>
+                    <v-icon id= "edit">edit</v-icon>
                   </v-btn>
                   <v-btn icon class="mx-0" @click="deleteItem(props.item)">
-                    <v-icon color="pink">delete</v-icon>
+                    <v-icon id="delete">delete</v-icon>
                   </v-btn>
                 </td>
               </template>
             </v-data-table>
           </div>
+
+          <input v-model="msg" placeholder="modifiez-moi">
+          <p>Le message est : {{ msg }}</p>
+
         </v-container>
       </v-content>
     </main>
-    <v-navigation-drawer fixed temporary :right="right" v-model="rightDrawer" app>
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
   </v-app>
+
 </div>
 
-<script type="text/x-template" id="page">
-  <v-layout column align-center>
-    <div>
-      <img src="./v.png" alt="Vuetify.js" class="mb-5" height="100px" />
-    </div>
-    <blockquote>
-      &#8220;First, solve the problem. Then, write the code.&#8221;
-      <footer>
-        <small>
-          <em>&mdash;John Johnson</em>
-        </small>
-      </footer>
-    </blockquote>
-  </v-layout>
-</script>
 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
 <script src="https://unpkg.com/hamoni-sync@0.6.2/hamoni.dev.js"></script>
+
 <script>
     Vue.component('page', {
         template: '#page'
@@ -121,6 +104,7 @@
     new Vue({
         el: '#app',
         data: {
+            msg:"userName",
             clipped: true,
             drawer: true,
             fixed: false,
@@ -255,6 +239,8 @@
         }
     })
 </script>
+
+
 </body>
 
 </html>

@@ -26,3 +26,95 @@
 #getting-started h2 {
   text-align: center;
 }
+
+#create{
+  flex: 1 1 auto;
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  background-image: linear-gradient(to right,#77A1D3, #79CBCA, #E684AE);
+}
+#create:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+#closePop{
+ color:#274046;
+}
+
+#savePop{
+color: #274046;
+}
+
+.headline{
+  color: #274046;
+}
+
+#caca{
+  padding-left: 43%;
+  padding-bottom: 1%;
+  padding-top: 3%;
+}
+
+#edit{
+  color:#77A1D3;
+  transition: 0.5s;
+}
+
+#edit:hover {
+  color: #E684AE;
+  transition: 0.5s;
+}
+
+#edit:hover {
+  color: #79CBCA;
+  transition: 0.5s;
+}
+
+#edit:active{
+  color: #E684AE;
+}
+
+#delete{
+  color:#77A1D3;
+  transition: 0.5s;
+}
+
+#delete:hover{
+   color: #79CBCA;
+   transition: 0.5s;
+ }
+
+#delete:active {
+  color: #E684AE;
+  transition: 0.5s;
+}
+
+#app{
+
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+  background-size: 125%;
+
+}
+
+
+
+#rudr_instafeed{
+  list-style:none
+}
+#rudr_instafeed li{
+  float:left;
+  width:200px;
+  height:200px;
+  margin:10px
+}
+#rudr_instafeed li img{
+  max-width:100%;
+  max-height:100%;
+}
+
+

@@ -10,5 +10,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="vuetify" level="application" />
     <orderEntry type="library" name="hamoni.dev" level="application" />
+    <orderEntry type="library" name="d3.v3" level="application" />
+    <orderEntry type="library" name="instauth" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
   </component>
 </module>
