@@ -2,138 +2,141 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nex+</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nex+</title>
 
-  <!-- Vuetify Data Table-->
-  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
-  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css">
-  <link href="styles.css" rel="stylesheet" type="text/css">
-  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-  <script src="https://instagram-web-auth.firebaseapp.com/instauth.min.js"></script>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
-  <script src="https://unpkg.com/hamoni-sync@0.6.2/hamoni.dev.js"></script>
+    <!-- Vuetify Data Table-->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet"
+          type="text/css">
+    <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <script src="https://instagram-web-auth.firebaseapp.com/instauth.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/hamoni-sync@0.6.2/hamoni.dev.js"></script>
 
 
-  <!-- instagram photos-->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="igjs.js"></script>
-  <script type="text/javascript" src="jquery.igjs.js"></script>
+    <!-- instagram photos-->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="igjs.js"></script>
+    <script type="text/javascript" src="jquery.igjs.js"></script>
 </head>
 
 <body>
 <div id="app">
-  <v-app>
-    <main>
-      <v-content>
-        <v-container fluid >
-          <div>
-            <v-dialog id ="caca" v-model="dialog" max-width="500px">
-              <v-btn slot="activator" id ="create">Nouvel Influenceur</v-btn>
-              <v-card>
-                <v-card-title>
-                  <span class="headline">{{ formTitle }}</span>
-                </v-card-title>
-                <v-card-text >
-                  <v-container grid-list-md>
-                    <v-layout wrap>
-                      <v-flex xs12 sm6 md4>
-                        <v-text-field v-model="editedItem.name" label="Nom de l'influenceur"></v-text-field>
-                      </v-flex>
-                      <v-flex xs12 sm6 md4>
-                        <v-text-field v-model="editedItem.calories" label="Sexe"></v-text-field>
-                      </v-flex>
-                      <v-flex xs12 sm6 md4>
-                        <v-text-field v-model="editedItem.fat" label="Age"></v-text-field>
-                      </v-flex>
-                      <v-flex xs12 sm6 md4>
-                        <v-text-field v-model="editedItem.carbs" label="Region"></v-text-field>
-                      </v-flex>
-                      <v-flex xs12 sm6 md4>
-                        <v-text-field v-model="editedItem.protein" label="Champs d'activite"></v-text-field>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn id="closePop" flat @click.native="close">Cancel</v-btn>
-                  <v-btn id="savePop" flat @click.native="save">Save</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-            <v-data-table :headers="headers" :items="desserts" hide-actions class="elevation-1">
-              <template slot="items" slot-scope="props">
-                <td>{{ props.item.name }}</td>
-                <td class="text-xs-right">{{ props.item.calories }}</td>
-                <td class="text-xs-right">{{ props.item.fat }}</td>
-                <td class="text-xs-right">{{ props.item.carbs }}</td>
-                <td class="text-xs-right">{{ props.item.protein }}</td>
-                <td class="justify-center layout px-0">
-                  <v-btn icon class="mx-0" @click="editItem(props.item)">
-                    <v-icon id= "edit">edit</v-icon>
-                  </v-btn>
-                  <v-btn icon class="mx-0" @click="deleteItem(props.item)">
-                    <v-icon id="delete">delete</v-icon>
-                  </v-btn>
-                </td>
-              </template>
-            </v-data-table>
-          </div>
-          <div class="container">
-            <h2 id="feedTitle">Instagram Feed</h2>
-            <hr>
-            <div class="ig-feed row"></div>
-            <hr>
-            <!--<h3>With Vanilla JS</h3>-->
-            <!--<div class="ig-info">-->
-            <!--<img src="" alt="">-->
-            <!--<ul>-->
-            <!--<li class="caption"></li>-->
-            <!--<li class="comments"></li>-->
-            <!--<li class="likes"></li>-->
-            <!--<li class="timestamp"></li>-->
-            <!--<li class="url"></li>-->
-            <!--<li class="thumbnails"></li>-->
-            <!--</ul>-->
-            <!--</div>-->
-          </div>
-          <script type="text/javascript">
+    <v-app>
+        <main>
+            <v-content>
+                <v-container fluid>
+                    <div>
+                        <v-dialog id="caca" v-model="dialog" max-width="500px">
+                            <v-btn slot="activator" id="create">Nouvel Influenceur</v-btn>
+                            <v-card>
+                                <v-card-title>
+                                    <span class="headline">{{ formTitle }}</span>
+                                </v-card-title>
+                                <v-card-text>
+                                    <v-container grid-list-md>
+                                        <v-layout wrap>
+                                            <v-flex xs12 sm6 md4>
+                                                <v-text-field v-model="editedItem.name"
+                                                              label="Nom de l'influenceur"></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6 md4>
+                                                <v-text-field v-model="editedItem.calories" label="Sexe"></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6 md4>
+                                                <v-text-field v-model="editedItem.fat" label="Age"></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6 md4>
+                                                <v-text-field v-model="editedItem.carbs" label="Region"></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6 md4>
+                                                <v-text-field v-model="editedItem.protein"
+                                                              label="Champs d'activite"></v-text-field>
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-container>
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn id="closePop" flat @click.native="close">Cancel</v-btn>
+                                    <v-btn id="savePop" flat @click.native="save">Save</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
+                        <v-data-table :headers="headers" :items="desserts" hide-actions class="elevation-1">
+                            <template slot="items" slot-scope="props">
+                                <td>{{ props.item.name }}</td>
+                                <td class="text-xs-right">{{ props.item.calories }}</td>
+                                <td class="text-xs-right">{{ props.item.fat }}</td>
+                                <td class="text-xs-right">{{ props.item.carbs }}</td>
+                                <td class="text-xs-right">{{ props.item.protein }}</td>
+                                <td class="justify-center layout px-0">
+                                    <v-btn icon class="mx-0" @click="editItem(props.item)">
+                                        <v-icon id="edit">edit</v-icon>
+                                    </v-btn>
+                                    <v-btn icon class="mx-0" @click="deleteItem(props.item)">
+                                        <v-icon id="delete">delete</v-icon>
+                                    </v-btn>
+                                </td>
+                            </template>
+                        </v-data-table>
+                    </div>
+                    <div class="container">
+                        <h2 id="feedTitle">Instagram Feed</h2>
+                        <hr>
+                        <div class="ig-feed row"></div>
+                        <hr>
+                        <!--<h3>With Vanilla JS</h3>-->
+                        <!--<div class="ig-info">-->
+                        <!--<img src="" alt="">-->
+                        <!--<ul>-->
+                        <!--<li class="caption"></li>-->
+                        <!--<li class="comments"></li>-->
+                        <!--<li class="likes"></li>-->
+                        <!--<li class="timestamp"></li>-->
+                        <!--<li class="url"></li>-->
+                        <!--<li class="thumbnails"></li>-->
+                        <!--</div>-->
+                    </div>
+                    <script type="text/javascript">
 
-              userName = 'requinchat';
-              document.getElementById("feedTitle").innerHTML = userName.toString() + "'s profile";
+                        userName = 'itstaza';
+                        document.getElementById("feedTitle").innerHTML = userName.toString() + "'s profile";
 
-              getPosts(userName.toString()).then(posts => {
-                  $('.ig-info img').attr('', posts[0].image)
-                  $('.caption').append('<h3>Caption:</h3> ' + posts[0].caption)
-                  $('.comments').append('<h3>Comments: </h3>' + posts[0].comments)
-                  $('.likes').append('<h3>Likes: </h3>' + posts[0].likes)
-                  $('.timestamp').append('<h3>Timestamp: </h3>' + posts[0].timestamp)
-                  $('.url').append('<h3>Url: </h3>' + posts[0].url)
-                  $('.thumbnails').append('<div><h3>Thumbnails: </h3></div><br>')
-                  for (let thumb in posts[0].thumbnails) {
-                      $('.thumbnails').append('<img src="'+posts[0].thumbnails[thumb]+'"><br>')
-                  }
-              });
+                        getPosts(userName.toString()).then(posts => {
+                            $('.ig-info img').attr('', posts[0].image)
+                            $('.caption').append('<h3>Caption:</h3> ' + posts[0].caption)
+                            $('.comments').append('<h3>Comments: </h3>' + posts[0].comments)
+                            $('.likes').append('<h3>Likes: </h3>' + posts[0].likes)
+                            $('.timestamp').append('<h3>Timestamp: </h3>' + posts[0].timestamp)
+                            $('.url').append('<h3>Url: </h3>' + posts[0].url)
+                            $('.thumbnails').append('<div><h3>Thumbnails: </h3></div><br>')
+                            for (let thumb in posts[0].thumbnails) {
+                                $('.thumbnails').append('<img src="' + posts[0].thumbnails[thumb] + '"><br>')
+                            }
+                        });
 
-              $(function(){
-                  $('.ig-feed').igjs({
-                      user: userName.toString(),
-                      posts: 8,
-                      perRow: 4
-                  });
-              })
+                        $(function () {
+                            $('.ig-feed').igjs({
+                                user: userName.toString(),
+                                posts: 8,
+                                perRow: 4
+                            });
+                        })
 
-          </script>
-        </v-container>
-      </v-content>
-    </main>
-  </v-app>
+                    </script>
+                </v-container>
+            </v-content>
+        </main>
+    </v-app>
 
 </div>
 
@@ -141,10 +144,10 @@
     Vue.component('page', {
         template: '#page'
     })
-   table =  new Vue({
+    table = new Vue({
         el: '#app',
         data: {
-            msg:"userName",
+            msg: "userName",
             clipped: true,
             drawer: true,
             fixed: false,
@@ -160,11 +163,11 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Sexe', value: 'calories', align: 'right' },
-                { text: 'Age', value: 'fat', align:'right' },
-                { text: 'Region', value: 'carbs', align:'right' },
-                { text: 'Champs activite', value: 'protein', align:'right'},
-                { text: 'Actions', value: 'name', sortable: false, align:'center' }
+                {text: 'Sexe', value: 'calories', align: 'right'},
+                {text: 'Age', value: 'fat', align: 'right'},
+                {text: 'Region', value: 'carbs', align: 'right'},
+                {text: 'Champs activite', value: 'protein', align: 'right'},
+                {text: 'Actions', value: 'name', sortable: false, align: 'center'}
             ],
             desserts: [],
             editedIndex: -1,
