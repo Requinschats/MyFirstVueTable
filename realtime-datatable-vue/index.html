@@ -35,7 +35,7 @@
             <v-content>
                 <v-container fluid>
                     <div>
-                        <v-dialog id="caca" v-model="dialog" max-width="500px">
+                        <v-dialog id="caca" v-model="dialog" max-width="2000px">
                             <v-btn slot="activator" id="create">Nouvel Influenceur</v-btn>
                             <v-card>
                                 <v-card-title>
@@ -44,17 +44,17 @@
                                 <v-card-text>
                                     <v-container grid-list-md>
                                         <v-layout wrap>
-                                            <v-flex xs12 sm6 md4>
+                                            <v-flex xs12 sm6 md4 wrap>
                                                 <v-text-field v-model="editedItem.name"
                                                               label="Nom de l'influenceur"></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm6 md4>
+                                            <v-flex xs12 sm6 md4 wrap>
                                                 <v-text-field v-model="editedItem.calories" label="Sexe"></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm6 md4>
+                                            <v-flex xs12 sm6 md4 wrap>
                                                 <v-text-field v-model="editedItem.fat" label="Age"></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm6 md4>
+                                            <v-flex xs12 sm6 md4 wrap>
                                                 <v-text-field v-model="editedItem.carbs" label="Region"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
@@ -98,45 +98,51 @@
                         <!--<div class="ig-info">-->
                         <!--<img src="" alt="">-->
                         <!--<ul>-->
-                        <!--<li class="caption"></li>-->
-                        <!--<li class="comments"></li>-->
-                        <!--<li class="likes"></li>-->
-                        <!--<li class="timestamp"></li>-->
-                        <!--<li class="url"></li>-->
-                        <!--<li class="thumbnails"></li>-->
-                        <!--</div>-->
+                        <h2>Informations about your last post:</h2>
+                        <li class="caption"></li>
+                        <li class="comments"></li>
+                        <li class="likes"></li>
+                        <li class="url"></li>
                     </div>
-                    <script type="text/javascript">
-
-                        userName = 'itstaza';
-                        document.getElementById("feedTitle").innerHTML = userName.toString() + "'s profile";
-
-                        getPosts(userName.toString()).then(posts => {
-                            $('.ig-info img').attr('', posts[0].image)
-                            $('.caption').append('<h3>Caption:</h3> ' + posts[0].caption)
-                            $('.comments').append('<h3>Comments: </h3>' + posts[0].comments)
-                            $('.likes').append('<h3>Likes: </h3>' + posts[0].likes)
-                            $('.timestamp').append('<h3>Timestamp: </h3>' + posts[0].timestamp)
-                            $('.url').append('<h3>Url: </h3>' + posts[0].url)
-                            $('.thumbnails').append('<div><h3>Thumbnails: </h3></div><br>')
-                            for (let thumb in posts[0].thumbnails) {
-                                $('.thumbnails').append('<img src="' + posts[0].thumbnails[thumb] + '"><br>')
-                            }
-                        });
-
-                        $(function () {
-                            $('.ig-feed').igjs({
-                                user: userName.toString(),
-                                posts: 8,
-                                perRow: 4
-                            });
-                        })
-
-                    </script>
                 </v-container>
             </v-content>
         </main>
     </v-app>
+</div>
+
+<script type="text/javascript">
+
+    userName = 'requinchat';
+
+    document.getElementById("feedTitle").innerHTML = userName.toString() + "'s profile";
+
+    getPosts(userName.toString()).then(posts => {
+        $('.ig-info img').attr('', posts[0].image)
+        $('.caption').append('<h3>Caption:</h3> ' + posts[0].caption)
+        $('.comments').append('<h3>Comments: </h3>' + posts[0].comments)
+        $('.likes').append('<h3>Likes: </h3>' + posts[0].likes)
+        $('.timestamp').append('<h3>Timestamp: </h3>' + posts[0].timestamp)
+        $('.url').append('<h3>Url: </h3>' + posts[0].url)
+        $('.thumbnails').append('<div><h3>Thumbnails: </h3></div><br>')
+        for (let thumb in posts[0].thumbnails) {
+            $('.thumbnails').append('<img src="' + posts[0].thumbnails[thumb] + '"><br>')
+        }
+    });
+
+    $(function () {
+        $('.ig-feed').igjs({
+            user: userName.toString(),
+            posts: 8,
+            perRow: 4
+        });
+    })
+
+
+</script>
+</v-container>
+</v-content>
+</main>
+</v-app>
 
 </div>
 
