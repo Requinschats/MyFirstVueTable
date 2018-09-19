@@ -118,4 +118,88 @@ color: #274046;
   max-height:100%;
 }
 
+#userNameInput{
+    background-color: white;
+    border-radius: 25px;
+    padding: 5px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    width: 188px;
+    text-align: center;
+}
+#userNameInput:focus{
+    border: 3px solid #555;
+    border-radius: 25px;
+    outline: none !important;
+}
+
+#userNameButtons{
+    padding-left: 41%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#instagram{
+    font-size: 35px;
+    padding-left: 2px;
+    color: #77A1D3;
+    vertical-align: middle;
+    float: right;
+}
+#instagram:hover{
+    font-size: 40px;
+    color: #5ee7df;
+}
+
+#instagram:active{
+    color: #E684AE;
+}
+
+.lds-circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 6px;
+    border-radius: 50%;
+    background: #fff;
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    vertical-align: middle;
+    border: 3px solid #555;
+    border-radius: 25px;
+    animation-iteration-count: 2;
+}
+
+.lds-circle:a{
+    display: none;
+    background: transparent;
+}
+
+
+@keyframes lds-circle {
+    0%, 100% {
+        animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(1800deg);
+        animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+    100% {
+        transform: rotateY(3600deg);
+    }
+}
+
+
 
